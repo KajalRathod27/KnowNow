@@ -1,0 +1,29 @@
+# Virtual environments
+.venv/
+.venv-1/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# MLflow
+mlruns/
+
+# Logs
+logs/
+
+# Raw data CSVs
+data/raw/*.csv
+
+# Frontend build & deps
+node_modules/
+dist/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# ENV files
+.env
+.env.local

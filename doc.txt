@@ -1,0 +1,62 @@
+preprocess.py: 
+
+Loaded 44898 rows
+Vectorizer saved.
+Train shape: (35918, 5000) | Test shape: (8980, 5000)
+
+train.py : 
+
+Loading data...
+Loaded 44898 rows
+Vectorizer saved.
+Training model...
+2026/03/29 01:24:42 WARNING mlflow.utils.git_utils: Failed to import Git (the Git executable is probably not on your PATH), so Git SHA is not available. Error: Failed to initialize: Bad git executable.
+The git executable must be specified in one of the following ways:
+    - be included in your $PATH
+    - be set via $GIT_PYTHON_GIT_EXECUTABLE
+    - explicitly set via git.refresh(<full-path-to-git-executable>)
+
+All git commands will error until this is rectified.
+
+This initial message can be silenced or aggravated in the future by setting the
+$GIT_PYTHON_REFRESH environment variable. Use one of the following values:
+    - quiet|q|silence|s|silent|none|n|0: for no message or exception
+    - warn|w|warning|log|l|1: for a warning message (logging level CRITICAL, displayed by default)
+    - error|e|exception|raise|r|2: for a raised exception
+
+Example:
+    export GIT_PYTHON_REFRESH=quiet
+
+2026/03/29 01:24:43 WARNING mlflow.models.model: `artifact_path` is deprecated. Please use `name` instead.
+2026/03/29 01:24:43 WARNING mlflow.sklearn: Saving scikit-learn models in the pickle or cloudpickle format requires 
+exercising caution because these formats rely on Python's object serialization mechanism, which can execute arbitrary code during deserialization. The recommended safe alternative is the 'skops' format. For more information, see: https://scikit-learn.org/stable/model_persistence.html
+
+✅ Accuracy : 0.9864
+✅ F1 Score : 0.9864
+
+              precision    recall  f1-score   support
+
+        FAKE       0.99      0.98      0.99      4710
+        REAL       0.98      0.99      0.99      4270
+
+    accuracy                           0.99      8980
+   macro avg       0.99      0.99      0.99      8980
+weighted avg       0.99      0.99      0.99      8980
+
+Model saved to models/model.pkl
+
+evaluate.py
+
+✅ Accuracy : 0.9864
+✅ F1 Score : 0.9864
+
+              precision    recall  f1-score   support
+
+        FAKE       0.99      0.98      0.99      4710
+        REAL       0.98      0.99      0.99      4270
+
+    accuracy                           0.99      8980
+   macro avg       0.99      0.99      0.99      8980
+weighted avg       0.99      0.99      0.99      8980
+
+Model saved to models/model.pkl

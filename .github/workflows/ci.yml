@@ -1,0 +1,47 @@
+name: Fake News MLOps CI/CD
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test-and-build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+
+      - name: Cache pip packages
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Train model (CI environment)
+        run: python src/train.py
+        # Note: requires data/raw/news.csv to exist
+        # For CI, you can commit a small sample CSV
+
+      - name: Run tests
+        run: pytest tests/ -v
+
+      - name: Build Docker image
+        run: docker build -t fake-news-api:latest .
+
+      - name: Verify container starts
+        run: |
+          docker run -d -p 8000:8000 --name test-api fake-news-api:latest
+          sleep 5
+          curl http://localhost:8000/health
+          docker stop test-api
