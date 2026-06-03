@@ -1,5 +1,6 @@
 from fastapi import FastAPI, UploadFile, File, HTTPException
 from fastapi.responses import JSONResponse
+from fastapi.middleware.cors import CORSMiddleware
 import joblib
 import pandas as pd
 import io
@@ -14,6 +15,14 @@ app = FastAPI(
     title="Fake News Detection API",
     description="End-to-end MLOps pipeline — TF-IDF + Logistic Regression",
     version="1.0.0"
+)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 model      = joblib.load("models/model.pkl")
