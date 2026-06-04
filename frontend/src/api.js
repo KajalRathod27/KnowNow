@@ -25,8 +25,13 @@
 
 import axios from 'axios'
 
+// const api = axios.create({
+//   baseURL: '/api',    // ← must be exactly this, not http://localhost:8000
+//   timeout: 30000,
+// })
+
 const api = axios.create({
-  baseURL: '/api',    // ← must be exactly this, not http://localhost:8000
+  baseURL: import.meta.env.VITE_API_URL || 'https://knownow-q1rq.onrender.com',
   timeout: 30000,
 })
 
